@@ -16,7 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from accounts.views import index, logout, login, register, user_profile
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
@@ -24,5 +25,4 @@ urlpatterns = [
     url(r'^login/', login, name="login"),
     url(r'^register/', register, name="register"),
     url(r'^profile/', user_profile, name="profile"),
-
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
